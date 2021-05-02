@@ -1,0 +1,17 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Files</h1>
+    <ul>
+        @for (var i = 0; i < Model.Files.Count; i++)
+        {
+            var file = Model.Files.ElementAt(i);
+            var index = i;
+            <li><a asp-page-handler="Custom" asp-route-id="@index">@file.Name</a></li>
+        }
+    </ul>
+</div>

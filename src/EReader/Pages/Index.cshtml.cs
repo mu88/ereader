@@ -33,11 +33,11 @@ namespace EReader.Pages
             Files = await GetFilesAsync();
         }
 
-        public async Task<IActionResult> OnGetCustomAsync(int id)
+        public async Task<IActionResult> OnGetDownloadAsync(int id)
         {
             var file = (await GetFilesAsync()).ElementAt(id);
             var response = await _webDavClient.GetRawFile(file.Uri);
-            return File(response.Stream, "application/octet-stream", file.Name);
+            return File(response.Stream, System.Net.Mime.MediaTypeNames.Application.Octet, file.Name);
         }
 
         private async Task<List<File>> GetFilesAsync()
@@ -47,7 +47,7 @@ namespace EReader.Pages
             var response = await _webDavClient.Propfind(_settings.WebDavUrl);
             if (response.IsSuccessful)
             {
-                var fileUris = response.Resources.Skip(1).Select(x => x.Uri);
+                var fileUris = response.Resources.Skip(1).Select(x => x.Uri); // first entry is the folder itself and can therefore be skipped
 
                 var webDavUri = new Uri(_settings.WebDavUrl);
                 var host = webDavUri.Host;
@@ -59,12 +59,5 @@ namespace EReader.Pages
 
             return results;
         }
-    }
-
-    public class File
-    {
-        public string Name => Uri?.Segments?.Last() ?? string.Empty;
-
-        public Uri Uri { get; init; }
     }
 }

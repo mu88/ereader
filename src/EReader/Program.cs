@@ -21,7 +21,7 @@ namespace EReader
                 ConfigureAppConfiguration((_, config) => { config.AddEnvironmentVariables(); })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>().UseUrls("http://localhost:5202/");
                 });
     }
 }

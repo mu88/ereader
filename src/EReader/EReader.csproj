@@ -13,4 +13,11 @@
     <PackageReference Include="WebDav.Client" Version="2.7.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="mu88_root_CA.crt" />
+    <Content Include="mu88_root_CA.crt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

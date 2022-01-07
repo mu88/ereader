@@ -1,10 +1,10 @@
-ARG BASE_IMAGE=mcr.microsoft.com/dotnet/aspnet:5.0.5-buster-slim-arm32v7
+ARG BASE_IMAGE=mcr.microsoft.com/dotnet/aspnet:6.0-bullseye-slim-arm32v7
 FROM ${BASE_IMAGE} AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/EReader/EReader.csproj", "src/EReader/"]
 RUN dotnet restore "src/EReader/EReader.csproj"

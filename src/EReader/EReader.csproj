@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>b77cbbb4-04a8-4007-8ad8-176bee3a11c2</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
-    <DockerfileBuildArguments Condition="'$(Configuration)' == 'Debug'">--build-arg BASE_IMAGE=mcr.microsoft.com/dotnet/aspnet:5.0.5</DockerfileBuildArguments>
+    <DockerfileBuildArguments Condition="'$(Configuration)' == 'Debug'">--build-arg BASE_IMAGE=mcr.microsoft.com/dotnet/aspnet:6.0-bullseye-slim</DockerfileBuildArguments>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="WebDav.Client" Version="2.7.0" />
   </ItemGroup>
 
